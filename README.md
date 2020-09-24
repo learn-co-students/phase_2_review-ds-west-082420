@@ -7,6 +7,12 @@ Close out strong
 
 ![](viz/mortal_kombat.gif)
 
+
+```python
+from src.student_caller import one_random_student, three_random_students
+from src.student_caller import three_random_students
+```
+
 ### Hypothesis tests
 
 For each, write:
@@ -112,7 +118,7 @@ Is Elon Musk a dirty liar?
 
 #### T-test question 3
 
-You are an archeologist.  Not Indiana Jones, the boring kind.  And at two sites you come across a series of shards from pots.
+You are an archeologist.  Not Indiana Jones, the non-violent kind.  And at two sites you come across a series of shards from pots.
 
 You know from your boring archeologist training that different thicknesses at the lip of the pots indicate different ceremonial functions.  
 
@@ -131,6 +137,7 @@ Sample 2 data:
 
 ```python
 
+    
 ```
 
 ### T-test question 4
