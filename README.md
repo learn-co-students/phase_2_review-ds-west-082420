@@ -1,3 +1,4 @@
+
 # Mod 2 Code Challenge Review
 
 You've come a long way with this material
@@ -55,10 +56,13 @@ For each of the questions below:
 
 ### Z-test example
 
-An SAT prep class of 25 students takes the SAT and gets the following scores:
+An SAT prep class of 40 students takes the SAT and gets the following scores:
 
-434 694 457 534 720 400 484 478 610 641 425 636 454
-514 563 370 499 640 501 625 612 471 598 509 531
+'''434 694 457 534 720 400 484 478 610 641 
+425 636 454 514 563 370 499 640 501 625 
+519 471 598 509 531 511 675 450 485 507 
+550 512 542 633 575 595 508 499 490 597 
+522 504 550 430 400'''
 
 We know the average for SAT scores as a whole is 500 with a standard deviation of 100
 
@@ -80,7 +84,11 @@ Did this SAT prep class result in a significantly greater mean of scores than av
 from scipy import stats
 import numpy as np
 
-data = '434 694 457 534 720 400 484 478 610 641 425 636 454 514 563 370 499 640 501 625 612 471 598 509 531'
+data = '''434 694 457 534 720 400 484 478 610 641 
+425 636 454 514 563 370 499 640 501 625 
+519 471 598 509 531 511 675 450 485 507 
+550 512 542 633 575 595 508 499 490 597 
+522 504 550 430 400'''
 
 def parse_data(data_to_parse, splits=' '):
     parsed = [float(val) for val in data_to_parse.split(splits)]
@@ -100,10 +108,20 @@ print(stats.norm.cdf(z))
 print(stats.norm.sf(z)) 
 ```
 
-    1.8
-    from z-table, z-score of 1.8 has distribution at or below of .9641
-    0.9640696808870742
-    0.03593031911292579
+
+    ---------------------------------------------------------------------------
+
+    ModuleNotFoundError                       Traceback (most recent call last)
+
+    <ipython-input-3-68935fc6c8c8> in <module>
+          2 
+          3 
+    ----> 4 from scipy import stats
+          5 import numpy as np
+          6 
+
+
+    ModuleNotFoundError: No module named 'scipy'
 
 
 ### Example: T-test
@@ -227,9 +245,20 @@ print(f'test t-stat: {ttest_result.statistic}')
 print(f'pvalue = {ttest_result.pvalue/2}')
 ```
 
-    critical t_stat: 1.6772241953450393
-    test t-stat: 0.655714294241895
-    pvalue = 0.25756938035286653
+
+    ---------------------------------------------------------------------------
+
+    ModuleNotFoundError                       Traceback (most recent call last)
+
+    <ipython-input-1-cd79888939dd> in <module>
+          1 #__SOLUTION__
+          2 
+    ----> 3 from scipy.stats import ttest_ind
+          4 
+          5 sample_1 = '19.7475 19.8387 12.6873 17.6973 19.0878 30.5562 14.5291 14.7627 14.3439 12.5745 11.0734 19.4998 18.3869 10.7374 18.0030 18.1730 18.8374 17.9287 15.3563 18.6004 11.7280 12.2898 21.0552 21.4184 25.5953'
+
+
+    ModuleNotFoundError: No module named 'scipy'
 
 
 ### T-test question 4
@@ -356,8 +385,6 @@ print(f'pvalue = {ttest_result.pvalue}')
     Ttest_indResult(statistic=-3.8616346980205254, pvalue=0.00020438921015483128)
 
 
-
-[Welsh's t, ie ttest_ind(equal_var=False), has some proseltyzors](https://onlinelibrary.wiley.com/doi/abs/10.1348/000711004849222)
 
 
 ```python
