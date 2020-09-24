@@ -1,3 +1,4 @@
+
 # Mod 2 Code Challenge Review
 
 You've come a long way with this material
@@ -55,10 +56,13 @@ For each of the questions below:
 
 ### Z-test example
 
-An SAT prep class of 25 students takes the SAT and gets the following scores:
+An SAT prep class of 40 students takes the SAT and gets the following scores:
 
-434 694 457 534 720 400 484 478 610 641 425 636 454
-514 563 370 499 640 501 625 612 471 598 509 531
+'''434 694 457 534 720 400 484 478 610 641 
+425 636 454 514 563 370 499 640 501 625 
+519 471 598 509 531 511 675 450 485 507 
+550 512 542 633 575 595 508 499 490 597 
+522 504 550 430 400'''
 
 We know the average for SAT scores as a whole is 500 with a standard deviation of 100
 
@@ -168,8 +172,6 @@ Use those employees to provide evidence for the question: do junior employees in
 ```python
 
 ```
-
-[Welsh's t, ie ttest_ind(equal_var=False), has some proseltyzors](https://onlinelibrary.wiley.com/doi/abs/10.1348/000711004849222)
 
 
 ```python
