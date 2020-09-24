@@ -5,7 +5,7 @@ You've come a long way with this material
 
 Close out strong
 
-![](viz/mortal_kombat.gif)
+![](https://media.giphy.com/media/f8mFljwmfesZHvC0YP/giphy.gif)
 
 ### Hypothesis tests
 
