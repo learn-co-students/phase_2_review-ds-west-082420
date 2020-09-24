@@ -7,6 +7,12 @@ Close out strong
 
 ![](viz/mortal_kombat.gif)
 
+
+```python
+from src.student_caller import one_random_student, three_random_students
+from src.student_caller import three_random_students
+```
+
 ### Hypothesis tests
 
 For each, write:
@@ -108,22 +114,6 @@ print(stats.norm.cdf(z))
 print(stats.norm.sf(z)) 
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-3-68935fc6c8c8> in <module>
-          2 
-          3 
-    ----> 4 from scipy import stats
-          5 import numpy as np
-          6 
-
-
-    ModuleNotFoundError: No module named 'scipy'
-
-
 ### Example: T-test
 
 #### T-test question 1
@@ -156,11 +146,6 @@ print(critical_tstat)
 print(ttest_1samp(data, 120))
 print(ttest_1samp(data, 120).pvalue/2)
 ```
-
-    1.729132811521367
-    Ttest_1sampResult(statistic=4.512403659336718, pvalue=0.00023838063630967753)
-    0.00011919031815483877
-
 
 #### T-test question 2
 
@@ -196,14 +181,9 @@ print(f'critical t_stat range: {critical_tstat_below}, {critical_tstat_above}')
 print(ttest_1samp(data, 31))
 ```
 
-    29.0
-    critical t_stat range: -2.3646242510103, 2.3646242510102993
-    Ttest_1sampResult(statistic=-2.0367003088692623, pvalue=0.0811068697473857)
-
-
 #### T-test question 3
 
-You are an archeologist.  Not Indiana Jones, the boring kind.  And at two sites you come across a series of shards from pots.
+You are an archeologist.  Not Indiana Jones, the non-violent kind.  And at two sites you come across a series of shards from pots.
 
 You know from your boring archeologist training that different thicknesses at the lip of the pots indicate different ceremonial functions.  
 
@@ -222,6 +202,7 @@ Sample 2 data:
 
 ```python
 
+    
 ```
 
 
@@ -244,22 +225,6 @@ ttest_result = ttest_ind(sample_1, sample_2, equal_var = True)
 print(f'test t-stat: {ttest_result.statistic}')
 print(f'pvalue = {ttest_result.pvalue/2}')
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    ModuleNotFoundError                       Traceback (most recent call last)
-
-    <ipython-input-1-cd79888939dd> in <module>
-          1 #__SOLUTION__
-          2 
-    ----> 3 from scipy.stats import ttest_ind
-          4 
-          5 sample_1 = '19.7475 19.8387 12.6873 17.6973 19.0878 30.5562 14.5291 14.7627 14.3439 12.5745 11.0734 19.4998 18.3869 10.7374 18.0030 18.1730 18.8374 17.9287 15.3563 18.6004 11.7280 12.2898 21.0552 21.4184 25.5953'
-
-
-    ModuleNotFoundError: No module named 'scipy'
-
 
 ### T-test question 4
 
@@ -292,11 +257,6 @@ ttest_result = ttest_ind(rats_1, rats_2, equal_var=True)
 print(f'test t-stat: {ttest_result.statistic}')
 print(f'pvalue = {ttest_result.pvalue}')
 ```
-
-    critical t_stat range: -2.109815577833181, 2.1098155778331806
-    test t-stat: 1.89143639744233
-    pvalue = 0.07573012895667763
-
 
 #### T-test question 5
 
@@ -370,21 +330,6 @@ ttest_result = ttest_ind(hr, const, equal_var=False)
 print(f'test t-stat: {ttest_result.statistic}')
 print(f'pvalue = {ttest_result.pvalue}')
 ```
-
-    jr jobs in construction and human services: 343 and 319
-    
-    and as a %age: 0.8932291666666666, 0.8242894056847545
-    critical t_stat range: -1.9844674544266925, 1.984467454426692
-    test t-stat: -3.8616346980205254
-    pvalue = 0.0002021240735680646
-
-
-
-
-
-    Ttest_indResult(statistic=-3.8616346980205254, pvalue=0.00020438921015483128)
-
-
 
 
 ```python
