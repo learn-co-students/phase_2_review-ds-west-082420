@@ -9,76 +9,168 @@ Close out strong
 
 
 ```python
+from scipy import stats
+import pandas as pd 
+import numpy as np
 from src.student_caller import one_random_student, three_random_students
 from src.student_caller import three_random_students
 ```
 
-### Hypothesis tests
-
-For each, write:
-
-- A null hypothesis 
-- An alternative hypothesis
-- Specify an alpha level
-- Specify what Type I error and Type II error would be (in English, without reference to the words `null`, `hypothesis`, or `alternative`
-
-We have a scores from a given classroom and want to know how they compare to the rest of the district.  We have all of the district's information.
+TOC:  
+  - [Bayes](#bayes)  
+  - [Hypothesis Tests](#hypo_test)  
+  - [Regression](#regression)
 
 
 
-We have two samples of weights of fish from two adjacent lakes.  We want to know if Lake Winnetonka's fish are smaller than Lake Okachobee's.
+<a id="bayes"></a>
+
+# Bayes
+
+$\large P(A|B) = \frac{P(A) \times P(B|A)}{p(B)}$
+
+![puppy_bowl](https://media.giphy.com/media/RZtgTyrPNR9T0tN4nL/giphy.gif)
 
 
+Thomas wants to get a new puppy 🐕 🐶 🐩
+He can choose to get his new puppy either from the pet store or the pound. The probability of him going to the pet store is $0.2$.
+He can choose to get either a big, medium or small puppy.
 
-We want to know if Guns 'n Roses rocks harder than Aerosmith, and are taking as a proxy "noise levels = how hard a band rocks".  We sample dB levels from 40 years of concerts.  Slash is looking over our shoulder the whole time.  
+If he goes to the pet store, the probability of him getting a small puppy is $0.6$. The probability of him getting a medium puppy is $0.3$, and the probability of him getting a large puppy is $0.1$.
+
+If he goes to the pound, the probability of him getting a small puppy is $0.1$. The probability of him getting a medium puppy is $0.35$, and the probability of him getting a large puppy is $0.55$.
+
+
+1) What is the probability of Thomas getting a small puppy?
+
+> Your answer here.  Write out your process in addition to your final numeric answer.
+
 
 
 ```python
+#__SOLUTION__
+'P(small_puppy) = .2*.6 + .8*.1'
+
+p_petstore = .2
+p_pound = 1-p_petstore
+p_pup_petstore = .6
+p_pup_pound = .1
+
+p_small_puppy = p_petstore*p_pup_petstore + p_pound * p_pup_pound
+p_small_puppy
+```
+
+2) Given that he got a large puppy, what is the probability that Thomas went to the pet store?
+
+Your answer here.  Write out your process in addition to your final numeric answer.
+
+
+```python
+#__SOLUTION__
+p_lp_g_ps = .1
+p_lp_ps = .1
+p_lp_pound = .55
+p_lp = p_petstore*p_lp_ps + p_pound*p_lp_pound
+
+p_ps_given_lp = (p_petstore * p_lp_g_ps)/p_lp
+p_ps_given_lp
+```
+
+# Z-Score
+
+We know the average for SAT scores for math as a whole in the U.S. in 2019 is 531 with a standard deviation of 104.
+
+Calculate the z-score associated with a math score of 650.
+
+
+
+```python
+# your answer here
+```
+
+
+```python
+#__SOLUTION__
+math_mu = 527
+math_std = 107
+student_score = 650
+z_score = (student_score - math_mu)/math_std
+z_score
+```
+
+## Hypothesis Testing: Exercise 1
+
+An SAT prep class of 40 students takes the SAT and gets the following math scores:
+
+
+
+```python
+prep_class_scores = [434, 694, 457, 534, 720, 
+                     400, 484, 478, 610, 641,
+                     425, 636, 654, 514, 563, 
+                     370, 499, 640, 501, 625, 
+                     519, 471, 598, 509, 531, 
+                     511, 675, 450, 485, 507, 
+                     550, 612, 542, 633, 575, 
+                     595, 508, 499, 490, 597, 
+                     522, 504, 650, 430, 400]
 
 ```
 
-### Calculation Examples
-
-For each of the questions below:
-
-- What is the null hypothesis?  What is the alternative?
-
-- What level of alpha are we using?  
-
-
-- What specific test are we using?
-    - **why?**
-
-
-- What is the critical statistic(s) at which we will designate evidence for rejecting the null?
-
-- What is the test-statistic?
-
-- What is the p-value?
-
-- Should we accept or reject the null hypothesis?
-
-- In English, what's the answer to the question?
-
-### Z-test example
-
-An SAT prep class of 40 students takes the SAT and gets the following scores:
-
-'''434 694 457 534 720 400 484 478 610 641 
-425 636 454 514 563 370 499 640 501 625 
-519 471 598 509 531 511 675 450 485 507 
-550 512 542 633 575 595 508 499 490 597 
-522 504 550 430 400'''
-
-We know the average for SAT scores as a whole is 500 with a standard deviation of 100
-
-Did this SAT prep class result in a significantly greater mean of scores than average?
-(use an alpha level of .05)
-
-[z-table](https://www.z-table.com) to use for calculations if you wish
+Did this SAT prep class result in a significantly greater mean score than population average?
 
 
 ```python
+# Define Null Hypothesis
+
+```
+
+
+```python
+# Define Alternative Hypothesis
+```
+
+
+```python
+#__SOLUTION__
+'''
+Null: The scores of the prep group are less than or equal to the national average.
+Alternative: The scores of the prep group are greater than the national average.
+'''
+```
+
+
+```python
+# Choose alpha
+
+```
+
+
+```python
+#__SOLUTION__
+'''
+alpha = .05
+'''
+```
+
+
+```python
+# What test are we using?
+
+
+```
+
+
+```python
+#__SOLUTION__
+'''
+Right tailed z-test.  We know the population mean and standard deviation, and the sample count is greater than 30.
+'''
+```
+
+
+```python
+# What is the critical statistic?
 
 ```
 
@@ -86,36 +178,240 @@ Did this SAT prep class result in a significantly greater mean of scores than av
 ```python
 #__SOLUTION__
 
-
-from scipy import stats
-import numpy as np
-
-data = '''434 694 457 534 720 400 484 478 610 641 
-425 636 454 514 563 370 499 640 501 625 
-519 471 598 509 531 511 675 450 485 507 
-550 512 542 633 575 595 508 499 490 597 
-522 504 550 430 400'''
-
-def parse_data(data_to_parse, splits=' '):
-    parsed = [float(val) for val in data_to_parse.split(splits)]
-    return parsed
-
-data = parse_data(data)
-
-mean = np.mean(data)
-std = np.std(data)
-
-denom = 100/np.sqrt(len(data))
-
-z = (mean - 500)/denom
-print(z)
-print(f'from z-table, z-score of 1.8 has distribution at or below of .9641')
-print(stats.norm.cdf(z))
-print(stats.norm.sf(z)) 
+critical_z = stats.norm.ppf(.95)
+critical_z
 ```
 
-### Example: T-test
 
+```python
+np.mean(prep_class_scores)
+```
+
+
+```python
+# What is the sample statistic? 
+
+
+```
+
+
+```python
+#__SOLUTION__
+z = (np.mean(prep_class_scores) - math_mu)/math_std
+z
+```
+
+
+```python
+# What is the p-value?
+
+```
+
+
+```python
+#__SOLUTION__
+stats.norm.cdf(z)
+# Cross check with http://www.z-table.com/
+```
+
+
+```python
+# What is a type I error in plain English
+```
+
+
+```python
+#__SOLUTION__
+# Type I Error: We concluded that prep class scores were greater than the national mean, when in fact they were less than or equal.
+```
+
+
+```python
+# What is a type II error in plain English
+```
+
+
+```python
+#__SOLUTION__
+# Type II Error: We concluded that the prep-class score is not greater than the national average, when in fact it is.
+
+```
+
+
+```python
+# Come to a conclusion w.r.t. the null hypothesis
+```
+
+
+```python
+#__SOLUTION__
+# Our sample-stat is less than the critical test-statistic (the p-value is .54, much greater than our alpha), 
+# and we cannot reject the null hypothesis.
+```
+
+
+```python
+# Create a 90% confidence interval using the sample data. 
+```
+
+
+```python
+#__SOLUTION__
+se = np.std(prep_class_scores)/np.sqrt(len(prep_class_scores))
+z = stats.norm.ppf(.95)
+conf_int_left  = np.mean(prep_class_scores) - z*se
+conf_int_right =  np.mean(prep_class_scores) + z*se
+
+print(conf_int_left, conf_int_right)
+```
+
+## Hypothesis Testing: Exercise 2
+
+You are an archeologist.  Not Indiana Jones, the non-violent kind.  And at two sites you come across a series of shards from pots.
+
+You know from your archeologist training that different thicknesses at the lip of the pots indicate different ceremonial functions.  
+
+You want to test the two samples of shard thickness to see if the thickness is due to chance at the two sites.
+
+Sample 1 has slightly thinner shards overall, so you want to test if the mean of sample 1 lip thickness is less than the mean of sample 2 lip thickness.  
+
+Assume that the two sample variances are equal.
+
+
+```python
+sample_1 = [17.4715, 20.0386, 12.6012, 20.4401, 22.4969,
+            9.8613, 19.6289, 9.7741, 5.9123, 17.4448, 
+            10.1237, 24.9357, 15.9265, 7.9955, 17.6675, 
+            13.6029, 17.8812, 16.4178, 5.1385, 7.0984, 
+            18.1181, 20.2681, 14.7372, 7.1021, 16.7546]
+
+```
+
+
+```python
+sample_2 =  [19.7475, 19.8387, 12.6873, 17.6973, 19.0878, 
+             30.5562, 14.5291, 14.7627, 14.3439, 12.5745, 
+             11.0734, 19.4998, 18.3869, 10.7374, 18.0030, 
+             18.1730, 18.8374, 17.9287, 14.3563, 18.6004, 
+             11.7280, 12.2898, 21.0552, 21.4184, 25.5953]
+
+```
+
+
+```python
+# Define Null/Alternative Hypotheses
+
+```
+
+
+```python
+#__SOLUTION__
+'''
+Null: The mean lip thickness of shards in sample 1 are greater than or equal two the mean lip thickness of shards in sample 2.
+Alternative: The mean lip thickness of shards in sample 1 are less than the mean lip thickness of shards in sample 2.
+'''
+```
+
+
+```python
+# Choose alpha
+
+```
+
+
+```python
+#__SOLUTION__
+'''
+alpha = .05
+'''
+```
+
+
+```python
+# What test are we using?
+
+
+```
+
+
+```python
+#__SOLUTION__
+'''
+Left tailed two-sample independent t-test with equal variance assumed.
+
+'''
+```
+
+
+```python
+# What is the critical statistic?
+
+```
+
+
+```python
+#__SOLUTION__
+n = len(sample_1) + len(sample_2) - 2
+stats.t.ppf(.05, n )
+```
+
+
+```python
+# Use statsmodels to run the appropriate test.
+
+```
+
+
+```python
+#__SOLUTION__
+stats.ttest_ind(sample_1, sample_2, equal_var=True)
+```
+
+
+```python
+# Come to a conclusion w.r.t. the null hypothesis
+
+```
+
+
+```python
+#__SOLUTION__
+# Our sample-stat is less than the critical test-statistic (the p-value is .0414, much greater than our alpha), 
+# and we can reject the null hypothesis.
+
+
+```
+
+
+```python
+#__SOLUTION__
+# We must divide the p_value by two, because by default, stats.ttest_ind returns a two tailed t-test
+stats.ttest_ind(sample_1, sample_2, equal_var=True).pvalue/2
+```
+
+
+```python
+# What is a type I error in plain English
+```
+
+
+```python
+#__SOLUTION__
+
+```
+
+
+```python
+# What is a type II error in plain English
+```
+
+
+```python
+#__SOLUTION__
+
+```
+
+### Hypothesis Testing: Example 3
 #### T-test question 1
 
 Samples of diastolic blood pressure were takin from a sample of 20 female doctors
@@ -128,208 +424,170 @@ Are female doctor diastolic blood pressures significantly higher than the female
 
 
 ```python
+# Null Hypothesis
+```
+
+
+```python
+#__SOLUTION__
+"Female doctors' dbp are less than or equal to the dbp of the greater female population"
+
+```
+
+
+```python
+# Alternative Hypothesis
+```
+
+
+```python
+#__SOLUTION__
+"Female doctors' dbp are greater than the dbp of the greater female population.
+```
+
+
+```python
+# Choose an alpha
+```
+
+
+```python
+#__SOLUTION__
+alpha = .01
+```
+
+
+```python
+# run the appropriate t-test in statsmodels and make a conclusion
+```
+
+
+```python
+#__SOLUTION__
+stats.ttest_1samp()
+```
+
+
+```python
+# Type I Error in plain English
+```
+
+
+```python
+#__SOLUTION__
+'You conclude that female doctor dbp is greater than the female population at large, when in fact it is less than or equal to the female population'
+```
+
+
+```python
+# Type II Error in plain English
+```
+
+
+```python
+#__SOLUTION__
+'You conclude that female dbp is less than or equal to the female population, when in fact it is greater than the female population.'
+```
+
+<a id='regression'></a>
+
+# Linear Regression
+
+
+```python
+from sklearn.datasets import load_diabetes
+```
+
+
+```python
+data = load_diabetes()
+```
+
+
+```python
+df = pd.concat([pd.DataFrame(data.target, columns=['target']),
+                pd.DataFrame(data.data, columns=data.feature_names)
+               ], axis=1)
+```
+
+### Statsmodels Linear Regression 
+
+
+```python
+from statsmodels.formula.api import ols
+```
+
+The stasmodels ols from formula.api take a formula as the first argument.  
+
+
+
+```python
+# Create a formula which incorporates sex, bmi, and bp.
+formula = None
+```
+
+
+```python
+#__SOLUTION__
+formula = 'target' + '~' + '+'.join(['sex', 'bmi','bp'])
+formula
+```
+
+
+```python
+# feed the formula and dataframe into an instance of the ols class
+# chain the fit method off the end to train the model
+model = None
+```
+
+
+```python
+#__SOLUTION__
+model = ols(formula, df).fit()
+```
+
+
+```python
+# run the summary method off the end of the fit model 
+model.summary()
+```
+
+
+```python
+# Within this model, which features are statistically significant?
+
+```
+
+Your answer here
+
+
+```python
+# Which features' increase results in an increase in the predicted value?
+```
+
+
+```python
+Your answer here
+```
+
+
+```python
+# Now, build another model using all of the available features
 
 ```
 
 
 ```python
 #__SOLUTION__
+formula = 'target' + '~' + "+".join(df.drop('target', axis=1).columns)
 
-
-from scipy.stats import ttest_1samp
-
-data = '128 127 118 115 144 142 133 140 132 131 111 132 149 122 139 119 136 129 126 128'
-data = parse_data(data, splits = ' ')
-
-critical_tstat = stats.t.ppf(.95, 19)
-print(critical_tstat)
-print(ttest_1samp(data, 120))
-print(ttest_1samp(data, 120).pvalue/2)
-```
-
-#### T-test question 2
-
-Tesla claims that they're miles-per-15min-of-charge average 31 
-
-You are hired by an eccentric Silicon Valley entreprenuer to test his fleet of 8 Teslas and see if the claim holds up
-
-You have a fair amount of driving around generating the data, and when you do you get these results:
-
-30 28 32 26 33 25 28 30
-
-Is Elon Musk a dirty liar?
-
-
-```python
+ols(formula, df).fit().summary()
 
 ```
 
+Did adding the full suite of independent features improve our model?
 
-```python
-#__SOLUTION__
-
-
-data = '30 28 32 26 33 25 28 30'
-
-data = parse_data(data)
-
-critical_tstat_below = stats.t.ppf(.025, 7)
-critical_tstat_above = stats.t.ppf(.975, 7)
-
-print(f'critical t_stat range: {critical_tstat_below}, {critical_tstat_above}')
-
-print(ttest_1samp(data, 31))
-```
-
-#### T-test question 3
-
-You are an archeologist.  Not Indiana Jones, the non-violent kind.  And at two sites you come across a series of shards from pots.
-
-You know from your boring archeologist training that different thicknesses at the lip of the pots indicate different ceremonial functions.  
-
-You want to test the two samples of shard thickness to see if the thickness is due to chance at the two sites.
-
-Sample 1 has slightly thicker shards overall, so you want to test if the mean of sample 1 lip thickness is higher than the mean of sample 2 lip thickness.  
-
-Assume that the two sample variances are equal.
-
-Sample 1 data:
-19.7475 19.8387 12.6873 17.6973 19.0878 30.5562 14.5291 14.7627 14.3439 12.5745 11.0734 19.4998 18.3869 10.7374 18.0030 18.1730 18.8374 17.9287 15.3563 18.6004 11.7280 12.2898 21.0552 21.4184 25.5953
-
-Sample 2 data:
-17.4715 20.0386 12.6012 20.4401 22.4969 9.8613 19.6289 9.7741 15.1119 17.4448 23.4827 24.9357 19.9265 7.9955 17.6675 13.6029 17.8812 16.4178 5.1385 7.0984 18.1181 20.2681 14.7372 22.5915 16.7546
-
-
-```python
-
-    
-```
-
-
-```python
-#__SOLUTION__
-
-from scipy.stats import ttest_ind
-
-sample_1 = '19.7475 19.8387 12.6873 17.6973 19.0878 30.5562 14.5291 14.7627 14.3439 12.5745 11.0734 19.4998 18.3869 10.7374 18.0030 18.1730 18.8374 17.9287 15.3563 18.6004 11.7280 12.2898 21.0552 21.4184 25.5953'
-sample_2 = '17.4715 20.0386 12.6012 20.4401 22.4969 9.8613 19.6289 9.7741 15.1119 17.4448 23.4827 24.9357 19.9265 7.9955 17.6675 13.6029 17.8812 16.4178 5.1385 7.0984 18.1181 20.2681 14.7372 22.5915 16.7546'
-
-sample_1 = parse_data(sample_1)
-sample_2 = parse_data(sample_2)
-
-critical_tstat_below = stats.t.ppf(.95, 48)
-print(f'critical t_stat: {critical_tstat_below}')
-
-
-ttest_result = ttest_ind(sample_1, sample_2, equal_var = True)
-print(f'test t-stat: {ttest_result.statistic}')
-print(f'pvalue = {ttest_result.pvalue/2}')
-```
-
-### T-test question 4
-
-Two sets of female rats were given a high- and low-protein diet, respectively, after giving birth.  Their weights were measured after 2 months.
-
-Set 1 (high protein) = 134 146 104 119 124 161 107 83 113 129 97 123
-
-Set 2 (low protein) = 70 118 101 85 107 132 94
-
-Is there a difference in rat weight between high- and low-protein diets after giving birth in this experiment?
-(Assume the sample variances are equal)
-
-
-```python
-
-```
-
-
-```python
-#__SOLUTION__
-
-rats_1 = parse_data('134 146 104 119 124 161 107 83 113 129 97 123')
-rats_2 = parse_data('70 118 101 85 107 132 94')
-
-critical_tstat_low = stats.t.ppf(.025, 17)
-critical_tstat_high = stats.t.ppf(.975, 17)
-print(f'critical t_stat range: {critical_tstat_low}, {critical_tstat_high}')
-
-ttest_result = ttest_ind(rats_1, rats_2, equal_var=True)
-print(f'test t-stat: {ttest_result.statistic}')
-print(f'pvalue = {ttest_result.pvalue}')
-```
-
-#### T-test question 5
-
-Get a wee bit of practice w/ pandas again, eh?
-
-Back to the data about Seattle city service `hourly_rate` compensation
-
-There's a national debate about whether construction workers or HR people account for more "bloat" in the system.  Construciton workers argue that there are a higher percentage of "junior" positions in their departments, while HR people have more "senior" positions.  
-
-Let's test that with the Seattle data.
-
-Create a dataframe of:
-- jobs in the `Construction and Inspections` dept
-- jobs in the `Human Services Dept` . . . dept
-- that don't have `Sr` as the last two letters in their title
-
-Sample 50 junior employees from each department (`random_state=33`)
-
-Use those employees to provide evidence for the question: do junior employees in construction departments have different `hourly_rate` compensation than those in HR departments?
-
-
-```python
-
-```
-
-
-```python
-#__SOLUTION__
-
-import pandas as pd
-
-df = pd.read_csv('data/data.csv')
-
-juniors = df[
-    ~df['job_title']
-    .isin(
-        [x for x 
-         in df['job_title'] 
-         if x[-2:]=='Sr'
-        ]
-    )
-]
-
-const_jr = juniors[
-    juniors.
-    department=='Construction & Inspections'
-]
-
-const_total = len(df[df.department=='Construction & Inspections'])
-
-hr_jr = juniors[
-    juniors.
-    department=='Human Services Department'
-]
-
-hr_total = len(df[df.department=='Human Services Department'])
-
-
-print(f'jr jobs in construction and human services: {len(const_jr)} and {len(hr_jr)}')
-print()
-print(f'and as a %age: {len(const_jr)/const_total}, {len(hr_jr)/hr_total}')
-
-critical_tstat_low = stats.t.ppf(.025, 98)
-critical_tstat_high = stats.t.ppf(.975, 98)
-print(f'critical t_stat range: {critical_tstat_low}, {critical_tstat_high}')
-
-hr = hr_jr.sample(50, axis=0, random_state=33)['hourly_rate']
-const = const_jr.sample(50, axis=0, random_state=33)['hourly_rate']
-
-ttest_result = ttest_ind(hr, const, equal_var=False)
-print(f'test t-stat: {ttest_result.statistic}')
-print(f'pvalue = {ttest_result.pvalue}')
-```
+> Your answer here
 
 
 ```python
