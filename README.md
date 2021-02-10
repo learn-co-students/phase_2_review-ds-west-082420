@@ -16,7 +16,7 @@ from src.student_caller import one_random_student, three_random_students
 from src.student_caller import three_random_students
 ```
 
-TOC:  
+# TOC:  
   - [Bayes](#bayes)  
   - [Hypothesis Tests](#hypo_test)  
   - [Regression](#regression)
@@ -115,11 +115,6 @@ Did this SAT prep class result in a significantly greater mean score than popula
 
 
 ```python
-np.mean(prep_class_scores)
-```
-
-
-```python
 # What is the sample statistic? 
 
 
@@ -133,17 +128,17 @@ np.mean(prep_class_scores)
 
 
 ```python
-# What is a type I error in plain English
+# Come to a conclusion w.r.t. the null hypothesis
+```
+
+
+```python
+# What is a type I error in this example (in plain English)
 ```
 
 
 ```python
 # What is a type II error in plain English
-```
-
-
-```python
-# Come to a conclusion w.r.t. the null hypothesis
 ```
 
 
@@ -233,9 +228,16 @@ sample_2 =  [19.7475, 19.8387, 12.6873, 17.6973, 19.0878,
 ### Hypothesis Testing: Example 3
 #### T-test question 1
 
-Samples of diastolic blood pressure were takin from a sample of 20 female doctors
+Samples of diastolic blood pressure were taken from a sample of 20 female doctors
 
-128 127 118 115 144 142 133 140 132 131 111 132 149 122 139 119 136 129 126 128
+
+```python
+
+fem_docs_dbp = [128,127,118,115,144,
+                142,133,140,132,131,
+                111,132,149,122,139,
+                119,136,129,126,128]
+```
 
 The mean female population diastolic blood pressure is 120
 
@@ -269,6 +271,11 @@ Are female doctor diastolic blood pressures significantly higher than the female
 
 ```python
 # Type II Error in plain English
+```
+
+
+```python
+# Calculate the 98% confidence interval given the array of sample blood pressures
 ```
 
 <a id='regression'></a>
@@ -331,7 +338,7 @@ Your answer here
 
 
 ```python
-# Which features' increase results in an increase in the predicted value?
+# Which features increase results in an increase in the predicted value?
 ```
 
 
