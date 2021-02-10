@@ -16,7 +16,7 @@ from src.student_caller import one_random_student, three_random_students
 from src.student_caller import three_random_students
 ```
 
-TOC:  
+# TOC:  
   - [Bayes](#bayes)  
   - [Hypothesis Tests](#hypo_test)  
   - [Regression](#regression)
@@ -60,6 +60,13 @@ p_small_puppy = p_petstore*p_pup_petstore + p_pound * p_pup_pound
 p_small_puppy
 ```
 
+
+
+
+    0.2
+
+
+
 2) Given that he got a large puppy, what is the probability that Thomas went to the pet store?
 
 Your answer here.  Write out your process in addition to your final numeric answer.
@@ -75,6 +82,13 @@ p_lp = p_petstore*p_lp_ps + p_pound*p_lp_pound
 p_ps_given_lp = (p_petstore * p_lp_g_ps)/p_lp
 p_ps_given_lp
 ```
+
+
+
+
+    0.043478260869565216
+
+
 
 # Z-Score
 
@@ -97,6 +111,13 @@ student_score = 650
 z_score = (student_score - math_mu)/math_std
 z_score
 ```
+
+
+
+
+    1.1495327102803738
+
+
 
 ## Hypothesis Testing: Exercise 1
 
@@ -140,6 +161,13 @@ Alternative: The scores of the prep group are greater than the national average.
 ```
 
 
+
+
+    '\nNull: The scores of the prep group are less than or equal to the national average.\nAlternative: The scores of the prep group are greater than the national average.\n'
+
+
+
+
 ```python
 # Choose alpha
 
@@ -152,6 +180,13 @@ Alternative: The scores of the prep group are greater than the national average.
 alpha = .05
 '''
 ```
+
+
+
+
+    '\nalpha = .05\n'
+
+
 
 
 ```python
@@ -169,6 +204,13 @@ Right tailed z-test.  We know the population mean and standard deviation, and th
 ```
 
 
+
+
+    '\nRight tailed z-test.  We know the population mean and standard deviation, and the sample count is greater than 30.\n'
+
+
+
+
 ```python
 # What is the critical statistic?
 
@@ -183,9 +225,11 @@ critical_z
 ```
 
 
-```python
-np.mean(prep_class_scores)
-```
+
+
+    1.6448536269514722
+
+
 
 
 ```python
@@ -202,6 +246,13 @@ z
 ```
 
 
+
+
+    0.10944963655244026
+
+
+
+
 ```python
 # What is the p-value?
 
@@ -215,8 +266,27 @@ stats.norm.cdf(z)
 ```
 
 
+
+
+    0.5435770670457578
+
+
+
+
 ```python
-# What is a type I error in plain English
+# Come to a conclusion w.r.t. the null hypothesis
+```
+
+
+```python
+#__SOLUTION__
+# Our sample-stat is less than the critical test-statistic (the p-value is .54, much greater than our alpha), 
+# and we cannot reject the null hypothesis.
+```
+
+
+```python
+# What is a type I error in this example (in plain English)
 ```
 
 
@@ -239,18 +309,6 @@ stats.norm.cdf(z)
 
 
 ```python
-# Come to a conclusion w.r.t. the null hypothesis
-```
-
-
-```python
-#__SOLUTION__
-# Our sample-stat is less than the critical test-statistic (the p-value is .54, much greater than our alpha), 
-# and we cannot reject the null hypothesis.
-```
-
-
-```python
 # Create a 90% confidence interval using the sample data. 
 ```
 
@@ -264,6 +322,9 @@ conf_int_right =  np.mean(prep_class_scores) + z*se
 
 print(conf_int_left, conf_int_right)
 ```
+
+    518.2026552067983 559.2195670154239
+
 
 ## Hypothesis Testing: Exercise 2
 
@@ -313,6 +374,13 @@ Alternative: The mean lip thickness of shards in sample 1 are less than the mean
 ```
 
 
+
+
+    '\nNull: The mean lip thickness of shards in sample 1 are greater than or equal two the mean lip thickness of shards in sample 2.\nAlternative: The mean lip thickness of shards in sample 1 are less than the mean lip thickness of shards in sample 2.\n'
+
+
+
+
 ```python
 # Choose alpha
 
@@ -325,6 +393,13 @@ Alternative: The mean lip thickness of shards in sample 1 are less than the mean
 alpha = .05
 '''
 ```
+
+
+
+
+    '\nalpha = .05\n'
+
+
 
 
 ```python
@@ -343,6 +418,13 @@ Left tailed two-sample independent t-test with equal variance assumed.
 ```
 
 
+
+
+    '\nLeft tailed two-sample independent t-test with equal variance assumed.\n\n'
+
+
+
+
 ```python
 # What is the critical statistic?
 
@@ -354,6 +436,13 @@ Left tailed two-sample independent t-test with equal variance assumed.
 n = len(sample_1) + len(sample_2) - 2
 stats.t.ppf(.05, n )
 ```
+
+
+
+
+    -1.6772241953450402
+
+
 
 
 ```python
@@ -368,6 +457,13 @@ stats.ttest_ind(sample_1, sample_2, equal_var=True)
 ```
 
 
+
+
+    Ttest_indResult(statistic=-1.7711939693439105, pvalue=0.08287752271565618)
+
+
+
+
 ```python
 # Come to a conclusion w.r.t. the null hypothesis
 
@@ -376,7 +472,7 @@ stats.ttest_ind(sample_1, sample_2, equal_var=True)
 
 ```python
 #__SOLUTION__
-# Our sample-stat is less than the critical test-statistic (the p-value is .0414, much greater than our alpha), 
+# Our sample-stat is less than the critical test-statistic (the p-value is .0414, which is less than our alpha), 
 # and we can reject the null hypothesis.
 
 
@@ -390,6 +486,13 @@ stats.ttest_ind(sample_1, sample_2, equal_var=True).pvalue/2
 ```
 
 
+
+
+    0.04143876135782809
+
+
+
+
 ```python
 # What is a type I error in plain English
 ```
@@ -397,7 +500,7 @@ stats.ttest_ind(sample_1, sample_2, equal_var=True).pvalue/2
 
 ```python
 #__SOLUTION__
-
+"""We conclude that shard lips in sample 1 are thinner than sample 2, when in fact they are not"""
 ```
 
 
@@ -408,15 +511,22 @@ stats.ttest_ind(sample_1, sample_2, equal_var=True).pvalue/2
 
 ```python
 #__SOLUTION__
-
+"""We conclude that shard lips in sample 1 are equal or of greater width than sample 2, when in fact they are thinner."""
 ```
 
 ### Hypothesis Testing: Example 3
 #### T-test question 1
 
-Samples of diastolic blood pressure were takin from a sample of 20 female doctors
+Samples of diastolic blood pressure were taken from a sample of 20 female doctors
 
-128 127 118 115 144 142 133 140 132 131 111 132 149 122 139 119 136 129 126 128
+
+```python
+
+fem_docs_dbp = [128,127,118,115,144,
+                142,133,140,132,131,
+                111,132,149,122,139,
+                119,136,129,126,128]
+```
 
 The mean female population diastolic blood pressure is 120
 
@@ -464,8 +574,15 @@ alpha = .01
 
 ```python
 #__SOLUTION__
-stats.ttest_1samp()
+stats.ttest_1samp(fem_docs_dbp, 120)
 ```
+
+
+
+
+    Ttest_1sampResult(statistic=4.512403659336718, pvalue=0.00023838063630967753)
+
+
 
 
 ```python
@@ -488,6 +605,27 @@ stats.ttest_1samp()
 #__SOLUTION__
 'You conclude that female dbp is less than or equal to the female population, when in fact it is greater than the female population.'
 ```
+
+
+```python
+# Calculate the 98% confidence interval given the array of sample blood pressures
+```
+
+
+```python
+#__SOLUTION__
+
+fem_docs_mean = np.mean(fem_docs_dbp)
+t_98 = stats.t.ppf(.99, len(fem_docs_dbp) - 1)
+
+left = fem_docs_mean - t_98*np.std(fem_docs_dbp, ddof=1)/np.sqrt(len(fem_docs_dbp))
+right = fem_docs_mean + t_98*np.std(fem_docs_dbp, ddof=1)/np.sqrt(len(fem_docs_dbp))
+
+print(f"""98% Confidence interval: {left}, {right}""")
+```
+
+    98% Confidence interval: 124.39407734934214, 135.7059226506579
+
 
 <a id='regression'></a>
 
@@ -562,7 +700,7 @@ Your answer here
 
 
 ```python
-# Which features' increase results in an increase in the predicted value?
+# Which features increase results in an increase in the predicted value?
 ```
 
 
